@@ -31,7 +31,7 @@ npm run start
 
 # Usage
 
-There is a backend for this application which is a REST API that serves stock market data. The backend can be found [here](https://github.com/alexdeloire/stock_marlet_data_backend).
+There is a backend for this application which is a REST API that serves stock market data. The backend can be found [here](https://github.com/alexdeloire/stock_market_data_backend).
 
 You can test uploading new csv data with the files in the data_to_upload folder.
 
