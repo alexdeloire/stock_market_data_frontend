@@ -148,7 +148,7 @@ const StockChart = () => {
             formData.append('file', file);
 
             // Check that the file name is the same as the one we are expecting
-            if (file.name !== 'stock_3_companies.csv' || file.name !== 'stock_5_companies.csv') {
+            if (!(file.name == 'stock_3_companies.csv' || file.name == 'stock_4_companies.csv')) {
                 alert('Please upload a file provided by us');
                 setFile(null);
                 return;
