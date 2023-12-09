@@ -54,6 +54,8 @@ const StockChart = () => {
 
             } catch (error) {
                 console.error('Error fetching data:', error);
+                setStockData(stockDataSamp);
+                setStockOptions(stockOptionsSamp);
             }
         };
 
