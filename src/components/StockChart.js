@@ -36,7 +36,7 @@ const StockChart = () => {
     useEffect(() => {
         const fetchStockData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/stock_prices/');
+                const response = await axios.get('https://stock-market-data-backend.onrender.com/api/stock_prices/');
 
                 if (response.status === 200) {
                     setStockData(response.data);
@@ -147,7 +147,7 @@ const StockChart = () => {
             const formData = new FormData();
             formData.append('file', file);
 
-            const response = await axios.post('http://localhost:8000/api/stock_prices/', formData, {
+            const response = await axios.post('https://stock-market-data-backend.onrender.com/api/stock_prices/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
