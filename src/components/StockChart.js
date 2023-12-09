@@ -7,20 +7,20 @@ import CorrelationMatrixTable from './CorrelationMatrixTable';
 import { calculateCorrelationMatrix, getRandomColor } from '../utils/utils';
 
 
-// Example data format
-// const stockData = {
-//     dates: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05'],
-//     companyA: [100, 105, 50, 35, 30],
-//     companyB: [50, 48, 55, 60, 58],
-//     companyC: [75, 80, 82, 78, 85],
-// };
+// Just in case the backend shuts down and the request times out
+const stockDataSamp = {
+    dates: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05'],
+    companyA: [100, 105, 50, 35, 30],
+    companyB: [50, 48, 55, 60, 58],
+    companyC: [75, 80, 82, 78, 85],
+};
 
-// const stockOptions = Object.keys(stockData)
-//     .filter(key => key !== 'dates') // Exclude the 'dates' key
-//     .map(company => ({
-//         value: company,
-//         label: company,
-//     }));
+const stockOptionsSamp = Object.keys(stockDataSamp)
+    .filter(key => key !== 'dates') // Exclude the 'dates' key
+    .map(company => ({
+        value: company,
+        label: company,
+    }));
 
 
 const StockChart = () => {
@@ -38,18 +38,30 @@ const StockChart = () => {
             try {
                 const response = await axios.get('http://localhost:8000/api/stock_prices/');
 
-                setStockData(response.data);
-                setStockOptions(Object.keys(response.data)
-                    .filter(key => key !== 'dates') // Exclude the 'dates' key
-                    .map(company => ({
-                        value: company,
-                        label: company,
-                    })));
+                if (response.status === 200) {
+                    setStockData(response.data);
+                    setStockOptions(Object.keys(response.data)
+                        .filter(key => key !== 'dates') // Exclude the 'dates' key
+                        .map(company => ({
+                            value: company,
+                            label: company,
+                        })));
+                }
+                else{
+                    setStockData(stockDataSamp);
+                    setStockOptions(stockOptionsSamp);
+                }
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
 
+        setSelectedCompanies([]);
+        setShowDifferenceChart(false);
+        setCorrelationMatrix(null);
+        setStockData({});
+        setStockOptions([]);
         fetchStockData();
 
     }, [uploadComplete]);
