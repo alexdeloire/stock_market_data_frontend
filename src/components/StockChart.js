@@ -147,6 +147,13 @@ const StockChart = () => {
             const formData = new FormData();
             formData.append('file', file);
 
+            // Check that the file name is the same as the one we are expecting
+            if (file.name !== 'stock_3_companies.csv' || file.name !== 'stock_5_companies.csv') {
+                alert('Please upload a file provided by us');
+                setFile(null);
+                return;
+            }
+
             const response = await axios.post('https://stock-market-data-backend.onrender.com/api/stock_prices/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
