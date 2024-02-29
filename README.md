@@ -4,7 +4,7 @@
 
 [Install](#installation) | [Usage](#usage) | [License](#license)
 
-This is frontend to visualise stock market data. You interact with it through and visualise the data in different ways. It is built with React.
+This is frontend to visualise stock market data. You interact with it and visualise the data in different ways. It is built with React.
 
 </div>
 
